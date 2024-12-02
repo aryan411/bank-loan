@@ -1,0 +1,200 @@
+<section fxLayout="row" style="gap: 2rem" fxLayout.lt-md="column">
+  <form
+    fxFlex.gt-md="70%"
+    fxFlex.md="70%"
+    fxLayout="column"
+    fxLayoutAlign="flex-start"
+    fxLayout.lt-sm="column"
+    class="loan-form"
+    [formGroup]="loanForm"
+  >
+    <div fxFlex="grow">
+      <div fxLayout="column" class="form-field">
+        <span>Full Name:</span>
+        <mat-form-field
+          appearance="outline"
+          style="max-width: 40rem !important"
+        >
+          <input formControlName="fullName" matInput style="display: block" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxFlex="grow" fxLayout="row wrap" fxLayout.lt-sm="column">
+      <div fxFlex fxLayout="column" class="form-field">
+        <span>Date of Birth:</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            name="dob"
+            formControlName="dateOfBirth"
+            [matDatepicker]="picker"
+            placeholder="MM/DD/YYYY"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker
+            yPosition="below"
+            xPosition="end"
+            panelClass="custom-datepicker"
+            #picker
+          ></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxFlex fxLayout="column" class="form-field">
+        <span for="email">Email:</span>
+        <mat-form-field appearance="outline">
+          <input
+            id="email"
+            placeholder="xyz@example.com"
+            formControlName="email"
+            matInput
+          />
+        </mat-form-field>
+      </div>
+      <div fxFlex fxLayout="column" class="form-field">
+        <span>Phone Number:</span>
+        <mat-form-field appearance="outline">
+          <input appFormatPhone formControlName="phone" matInput />
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxFlex="grow" fxLayout="column" class="form-field">
+      <span>Address:</span>
+      <mat-form-field appearance="outline">
+        <textarea matInput formControlName="address"></textarea>
+      </mat-form-field>
+    </div>
+    <div fxFlex="grow" fxLayout="row wrap" fxLayout.lt-sm="column">
+      <div fxFlex fxLayout="column" class="form-field">
+        <span>City:</span>
+        <mat-form-field appearance="outline">
+          <select
+            formControlName="city"
+            matNativeControl
+            placeholder="Select a City"
+          >
+            <option disabled selected>Select a City</option>
+            @for (city of cities; track city.label) {
+            <option [value]="city.value">{{ city.label }}</option>
+            }
+          </select>
+        </mat-form-field>
+      </div>
+      <div fxFlex fxLayout="column" class="form-field">
+        <span>State:</span>
+        <mat-form-field appearance="outline">
+          <input formControlName="state" matInput />
+        </mat-form-field>
+      </div>
+      <div fxFlex fxLayout="column" class="form-field">
+        <span>Zip Code:</span>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="zipCode" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex fxLayout="column" class="form-field">
+        <span>Annual Income:</span>
+        <mat-form-field appearance="outline">
+          <input formControlName="annualIncome" matInput />
+        </mat-form-field>
+      </div>
+      <div fxFlex fxLayout="column" class="form-field">
+        <span>Employment Status:</span>
+        <mat-form-field appearance="outline">
+          <input formControlName="employmentStatus" matInput />
+        </mat-form-field>
+      </div>
+      <div fxFlex fxLayout="column" class="form-field">
+        <span>Credit Score:</span>
+        <mat-form-field appearance="outline">
+          <input formControlName="creditScore" matInput />
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxFlex="grow" fxLayout="column" class="form-field">
+      <span>Assets:</span>
+      <mat-form-field appearance="outline">
+        <textarea formControlName="assets" matInput></textarea>
+      </mat-form-field>
+    </div>
+    <div fxFlex="grow" fxLayout="column" class="form-field">
+      <span>Gender:</span>
+      <mat-radio-group formControlName="gender">
+        <mat-radio-button value="male"> Male</mat-radio-button>
+        <mat-radio-button value="female"> Female </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div fxFlex="grow" class="form-field" fxFlexAlign="center">
+      <app-button
+        (click)="submitNewApplication()"
+        [disabled]="loanForm.invalid"
+        color="accent"
+      >
+        Submit Application
+      </app-button>
+    </div>
+  </form>
+  <div id="current Loans" fxLayout="column" fxFlex>
+    <h2>Current Loans</h2>
+    <div fxLayout="row wrap">
+      <div fxFlex fxLayout="column" class="form-field">
+        <span>Bank Name:</span>
+        <mat-form-field appearance="outline">
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div fxFlex fxLayout="column" class="form-field">
+        <span>Loan Amount:</span>
+        <mat-form-field appearance="outline">
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div fxFlex fxLayout="column" class="form-field">
+        <span>EMI:</span>
+        <mat-form-field appearance="outline">
+          <input matInput />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-field">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="srno">
+          <th mat-header-cell *matHeaderCellDef>Sr NO</th>
+          <td mat-cell *matCellDef="let element">{{ element.srno }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="bank">
+          <th mat-header-cell *matHeaderCellDef>bank</th>
+          <td mat-cell *matCellDef="let element">{{ element.bank }}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="loanAmount">
+          <th mat-header-cell *matHeaderCellDef>Loan Amount</th>
+          <td mat-cell *matCellDef="let element">{{ element.loanAmount }}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="emi">
+          <th mat-header-cell *matHeaderCellDef>EMI</th>
+          <td mat-cell *matCellDef="let element">{{ element.emi }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4" style="text-align: center;">No data</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>

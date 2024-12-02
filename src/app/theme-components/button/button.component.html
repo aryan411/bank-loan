@@ -1,0 +1,46 @@
+@switch (buttonType) { @case ('mat-button') {
+<button
+  (click)="clickEvent($event)"
+  mat-button
+  [color]="color"
+  [type]="type"
+  [disabled]="disabled"
+>
+  <ng-content *ngTemplateOutlet="childTemplate"></ng-content>
+</button>
+} @case ('mat-flat-button') {
+<button
+  (click)="clickEvent($event)"
+  mat-flat-button
+  [color]="color"
+  [type]="type"
+  [disabled]="disabled"
+>
+  <ng-container *ngTemplateOutlet="childTemplate"></ng-container>
+</button>
+} @case ('mat-raised-button') {
+<button
+  (click)="clickEvent($event)"
+  mat-raised-button
+  [color]="color"
+  [type]="type"
+  [disabled]="disabled"
+>
+  <ng-container *ngTemplateOutlet="childTemplate"></ng-container>
+</button>
+} @default {
+<button
+  (click)="clickEvent($event)"
+  mat-raised-button
+  [color]="color"
+  [type]="type"
+  [disabled]="disabled"
+>
+  <ng-container *ngTemplateOutlet="childTemplate"></ng-container>
+</button>
+} }
+
+<ng-template #childTemplate>
+  {{ label }}
+  <ng-content></ng-content>
+</ng-template>
