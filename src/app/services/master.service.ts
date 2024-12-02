@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Application } from '../models/application.model';
-import { Observable } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { apiEndpoints } from '../utilites/api-endpoints.model';
 import { APIResponse } from '../models/response.model';
@@ -14,9 +14,9 @@ export class MasterService {
 
   addNewApplication(
     application: Application
-  ): Observable<APIResponse<Application | null>> {
+  ): Observable<APIResponse<Application[] | null>> {
     debugger;
-    return this.http.post<APIResponse<Application | null>>(
+    return this.http.post<APIResponse<Application[] | null>>(
       `${environment.apiBaseURL}${apiEndpoints.POST.CHECK_APPLICATION_STATUS}`,
       application
     );
