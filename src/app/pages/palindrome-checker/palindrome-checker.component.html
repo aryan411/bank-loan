@@ -1,0 +1,16 @@
+<main>
+  <div class="container">
+    <h1>Is it a Palindrome?</h1>
+    <div class="checker">
+      <div class="label">Enter in text to check for a palindrome:</div>
+      <div class="input-container">
+        <input [(ngModel)]="textInput" id="text-input" />
+        <button (click)="onCheck()" id="check-btn">check</button>
+      </div>
+
+      <div id="result">
+        {{ result }}
+      </div>
+    </div>
+  </div>
+</main>

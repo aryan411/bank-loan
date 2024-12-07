@@ -1,0 +1,18 @@
+<section class="main">
+  <ul class="todo-list">
+    @for(todo of todos(); track todo.id){
+    <li>
+      <div class="view">
+        <input
+          class="toggle"
+          type="checkbox"
+          [checked]="todo.isCompleted"
+          (change)="updateCompeteStatusTodo(todo.id, !todo.isCompleted)"
+        />
+        <label>{{ todo.text }}</label>
+        <button class="destroy" (click)="removeTodo(todo.id)"></button>
+      </div>
+    </li>
+    }
+  </ul>
+</section>
