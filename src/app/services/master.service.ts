@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { DoCheck, Injectable } from '@angular/core';
 import { Application } from '../models/application.model';
 import { Observable, map, tap } from 'rxjs';
 import { environment } from '../../environments/environment.development';
@@ -9,9 +9,12 @@ import { APIResponse } from '../models/response.model';
 @Injectable({
   providedIn: 'root',
 })
-export class MasterService {
+export class MasterService implements DoCheck {
   constructor(private http: HttpClient) {}
-
+ 
+  ngDoCheck(): void {
+    console.log("MasterService ",'ngDoCheck triggered!');
+  }
   addNewApplication(
     application: Application
   ): Observable<APIResponse<Application[] | null>> {

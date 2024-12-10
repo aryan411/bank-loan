@@ -1,0 +1,26 @@
+<footer class="footer">
+  <div class="todo-count">Todos: {{ todosCount }}</div>
+  <ul class="filters">
+    <li>
+      <a
+        [ngClass]="{ selected: (activeFilter$ | async) == todosFilterEnum.All }"
+        (click)="selectFilter(todosFilterEnum.All)"
+        >All</a
+      >
+    </li>
+    <li>
+      <a
+        [ngClass]="{ selected: (activeFilter$ | async) == todosFilterEnum.IsActive }"
+        (click)="selectFilter(todosFilterEnum.IsActive)"
+        >Active</a
+      >
+    </li>
+    <li>
+      <a
+        [ngClass]="{ selected: (activeFilter$ | async) == todosFilterEnum.Completed }"
+        (click)="selectFilter(todosFilterEnum.Completed)"
+        >completed</a
+      >
+    </li>
+  </ul>
+</footer>

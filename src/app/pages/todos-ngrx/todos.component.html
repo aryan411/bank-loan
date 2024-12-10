@@ -1,0 +1,5 @@
+<div class="todoapp">
+  <app-header-ngrx />
+  <app-main-ngrx (emitTodoCounts)="changeTodoCounts($event)" ></app-main-ngrx>
+  <app-footer-ngrx [todosCount]="todosCount"></app-footer-ngrx>
+</div>

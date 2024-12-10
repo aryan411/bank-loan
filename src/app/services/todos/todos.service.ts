@@ -1,11 +1,11 @@
-import { Injectable, Signal, computed, signal } from '@angular/core';
+import { DoCheck, Injectable, Signal, computed, signal } from '@angular/core';
 import { ITodos } from '../../models/todos/todos.interface';
 import { TodosFilterEnum } from '../../models/todos/todos-filter-enum';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TodosService {
+export class TodosService implements DoCheck {
   todoSig = signal<ITodos[]>([]);
   todoFilter = signal<TodosFilterEnum>(TodosFilterEnum.All);
   constructor() {
@@ -22,7 +22,9 @@ export class TodosService {
         return this.todoSig();
     }
   });
-
+  ngDoCheck(): void {
+    console.log('TodoService ', 'ngDoCheck triggered!');
+  }
   addTodo(text: string): void {
     console.log(text, 'service');
     const newTodo: ITodos = {

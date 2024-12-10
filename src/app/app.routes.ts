@@ -4,6 +4,7 @@ import { ApplicationListComponent } from './pages/application-list/application-l
 import { ChallengesComponent } from './pages/challenges/challenges.component';
 import { C1Component } from './pages/challenges/c1/c1.component';
 import { TodosComponent } from './pages/todos/todos.component';
+import { TodosNgrxComponent } from './pages/todos-ngrx/todos-ngrx.component';
 
 export const routes: Routes = [
   {
@@ -38,5 +39,9 @@ export const routes: Routes = [
   {
     path: 'todos',
     component: TodosComponent,
+  },
+  {
+    path: 'todos_ngrx',
+    component: TodosNgrxComponent,
   },
 ];
