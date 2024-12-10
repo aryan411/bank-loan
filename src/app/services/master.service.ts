@@ -11,7 +11,7 @@ import { APIResponse } from '../models/response.model';
 })
 export class MasterService {
   constructor(private http: HttpClient) {}
- 
+
   addNewApplication(
     application: Application
   ): Observable<APIResponse<Application[] | null>> {

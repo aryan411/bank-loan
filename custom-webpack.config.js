@@ -1,6 +1,6 @@
 const webpack = require("webpack");
 module.exports = {
-  plugin: [
+  plugins: [
     new webpack.DefinePlugin({
       FEATURE_FLAG: `'PROD'`,
     }),
