@@ -9,7 +9,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:ci": "jest --runInBand",
-    "serve:ssr:bank-loan": "node dist/bank-loan/server/server.mjs"
+    "serve:ssr:bank-loan": "node dist/bank-loan/server/server.mjs",
+    "bundle-report": "ng build --configuration production"
   },
   "private": true,
   "dependencies": {
